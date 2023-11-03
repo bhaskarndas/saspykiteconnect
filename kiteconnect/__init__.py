@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Kite Connect API client for Python -- [kite.trade](https://kite.trade).
-
-Zerodha Technology Pvt. Ltd. (c) 2021
-
-License
--------
-KiteConnect Python library is licensed under the MIT License
 
 The library
 -----------
