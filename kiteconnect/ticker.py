@@ -383,7 +383,8 @@ class KiteTicker(object):
     RECONNECT_MAX_TRIES = 50
     # Default root API endpoint. It's possible to
     # override this by passing the `root` parameter during initialisation.
-    ROOT_URI = "wss://ws.kite.trade"
+    #ROOT_URI = "wss://ws.kite.trade"
+    ROOT_URI ='wss://alpha.sasonline.in
 
     # Available streaming modes.
     MODE_FULL = "full"
@@ -444,10 +445,8 @@ class KiteTicker(object):
 
         self.connect_timeout = connect_timeout
 
-        self.socket_url = "{root}?api_key={api_key}"\
-            "&access_token={access_token}".format(
+        self.socket_url = "{root}/hydrasocket/v2/websocket?access_token={access_token}".format(
                 root=self.root,
-                api_key=api_key,
                 access_token=access_token
             )
 
