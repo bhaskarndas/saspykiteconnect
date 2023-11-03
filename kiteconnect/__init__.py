@@ -23,7 +23,7 @@ Getting started
 
     logging.basicConfig(level=logging.DEBUG)
 
-    kite = KiteConnect(api_key="your_api_key")
+    sas = SASonline(api_key="your_api_key")
 
     # Redirect the user to the login url obtained
     # from kite.login_url(), and receive the request_token
