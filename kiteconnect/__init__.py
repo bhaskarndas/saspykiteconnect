@@ -19,7 +19,7 @@ Getting started
 ---------------
     #!python
     import logging
-    from kiteconnect import KiteConnect
+    from kiteconnect import SASonline
 
     logging.basicConfig(level=logging.DEBUG)
 
