@@ -24,17 +24,17 @@ import kiteconnect.exceptions as ex
 log = logging.getLogger(__name__)
 
 
-class KiteConnect(object):
+class SASonline(object):
     """
-    The Kite Connect API wrapper class.
+    The SASonline API wrapper class.
 
     In production, you may initialise a single instance of this class per `api_key`.
     """
 
     # Default root API endpoint. It's possible to
     # override this by passing the `root` parameter during initialisation.
-    _default_root_uri = "https://api.kite.trade"
-    _default_login_uri = "https://kite.zerodha.com/connect/login"
+    _default_root_uri = "https://alpha.sasonline.in"
+    _default_login_uri = "https://alpha.sasonline.in/api/v3/user/login"
     _default_timeout = 7  # In seconds
 
     # Kite connect header version
@@ -105,42 +105,35 @@ class KiteConnect(object):
     GTT_STATUS_DELETED = "deleted"
 
     # URIs to various calls
+    
     _routes = {
-        "api.token": "/session/token",
-        "api.token.invalidate": "/session/token",
+        "api.auth":"/oauth2/auth",
+        "api.token": "/oauth2/token",
+        "api.token.invalidate": "/oauth2/token",
         "api.token.renew": "/session/refresh_token",
-        "user.profile": "/user/profile",
+        'validatetotp': '/api/v3/user/validatetotp',
+        "user.profile": '/api/v1/user/profile',
         "user.margins": "/user/margins",
         "user.margins.segment": "/user/margins/{segment}",
 
-        "orders": "/orders",
-        "trades": "/trades",
+        "orders": '/api/v2/order',
+        "trades": '/api/v2/trade',
 
-        "order.info": "/orders/{order_id}",
-        "order.place": "/orders/{variety}",
+        "order.info": '/api/v2/order/{order_id}',
+        "order.place": '/api/v2/order',
         "order.modify": "/orders/{variety}/{order_id}",
         "order.cancel": "/orders/{variety}/{order_id}",
         "order.trades": "/orders/{order_id}/trades",
-
+        "order.amo":'/api/v2/amo',
+        "order.bracketorder":'/api/v2/bracketorder',
+        "order.basketorder":'/api/v2/basketorder',
+        "portfolio.positions.netwise":'/api/v2/positions?type=netwise',
+        "portfolio.positions.daywise":'/api/v2/positions?type=daywise',
         "portfolio.positions": "/portfolio/positions",
-        "portfolio.holdings": "/portfolio/holdings",
-        "portfolio.holdings.auction": "/portfolio/holdings/auctions",
+        "portfolio.holdings": '/api/v2/holdings',
+        
         "portfolio.positions.convert": "/portfolio/positions",
 
-        # MF api endpoints
-        "mf.orders": "/mf/orders",
-        "mf.order.info": "/mf/orders/{order_id}",
-        "mf.order.place": "/mf/orders",
-        "mf.order.cancel": "/mf/orders/{order_id}",
-
-        "mf.sips": "/mf/sips",
-        "mf.sip.info": "/mf/sips/{sip_id}",
-        "mf.sip.place": "/mf/sips",
-        "mf.sip.modify": "/mf/sips/{sip_id}",
-        "mf.sip.cancel": "/mf/sips/{sip_id}",
-
-        "mf.holdings": "/mf/holdings",
-        "mf.instruments": "/mf/instruments",
 
         "market.instruments.all": "/instruments",
         "market.instruments": "/instruments/{exchange}",
@@ -152,12 +145,7 @@ class KiteConnect(object):
         "market.quote.ohlc": "/quote/ohlc",
         "market.quote.ltp": "/quote/ltp",
 
-        # GTT endpoints
-        "gtt": "/gtt/triggers",
-        "gtt.place": "/gtt/triggers",
-        "gtt.info": "/gtt/triggers/{trigger_id}",
-        "gtt.modify": "/gtt/triggers/{trigger_id}",
-        "gtt.delete": "/gtt/triggers/{trigger_id}",
+        
 
         # Margin computation endpoints
         "order.margins": "/margins/orders",
