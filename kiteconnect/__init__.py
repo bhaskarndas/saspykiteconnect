@@ -31,12 +31,12 @@ Getting started
     # Once you have the request_token, obtain the access_token
     # as follows.
 
-    data = kite.generate_session("request_token_here", api_secret="your_secret")
-    kite.set_access_token(data["access_token"])
+    data = sas.generate_session("request_token_here", api_secret="your_secret")
+    sas.set_access_token(data["access_token"])
 
     # Place an order
     try:
-        order_id = kite.place_order(variety=kite.VARIETY_REGULAR,
+        order_id = sas.place_order(variety=kite.VARIETY_REGULAR,
                                     tradingsymbol="INFY",
                                     exchange=kite.EXCHANGE_NSE,
                                     transaction_type=kite.TRANSACTION_TYPE_BUY,
@@ -50,10 +50,10 @@ Getting started
         logging.info("Order placement failed: {}".format(e.message))
 
     # Fetch all orders
-    kite.orders()
+    sas.orders()
 
     # Get instruments
-    kite.instruments()
+    sas.instruments()
 
     
 
@@ -90,7 +90,7 @@ it raises aptly named **[exceptions](exceptions.m.html)** that you can catch.
 from __future__ import unicode_literals, absolute_import
 
 from kiteconnect import exceptions
-from kiteconnect.connect import KiteConnect
+from kiteconnect.connect import SASonline
 from kiteconnect.ticker import KiteTicker
 
 __all__ = ["KiteConnect", "KiteTicker", "exceptions"]
