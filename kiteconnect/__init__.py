@@ -62,19 +62,7 @@ Getting started
     # Get instruments
     kite.instruments()
 
-    # Place an mutual fund order
-    kite.place_mf_order(
-        tradingsymbol="INF090I01239",
-        transaction_type=kite.TRANSACTION_TYPE_BUY,
-        amount=5000,
-        tag="mytag"
-    )
-
-    # Cancel a mutual fund order
-    kite.cancel_mf_order(order_id="order_id")
-
-    # Get mutual fund instruments
-    kite.mf_instruments()
+    
 
 A typical web application
 -------------------------
