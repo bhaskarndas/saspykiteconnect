@@ -113,29 +113,34 @@ class SASonline(object):
         "api.token.renew": "/session/refresh_token",
         'validatetotp': '/api/v3/user/validatetotp',
         "user.profile": '/api/v1/user/profile',
-        "user.margins": "/user/margins",
+        "user.margins": '/api/v2/cashposition',
         "user.margins.segment": "/user/margins/{segment}",
+    
 
         "orders": '/api/v2/order',
         "trades": '/api/v2/trade',
 
         "order.info": '/api/v2/order/{order_id}',
         "order.place": '/api/v2/order',
-        "order.modify": "/orders/{variety}/{order_id}",
-        "order.cancel": "/orders/{variety}/{order_id}",
-        "order.trades": "/orders/{order_id}/trades",
+        "order.modify": '/api/v2/order',
+        "order.cancel": '/api/v2/order?oms_order_id={order_id}&order_status=open',
+        'order.cancel_bo_order': '/api/v2/order?oms_order_id={order_id}&order_status=open&leg_order_indicator={leg_order_id}',
+        'order.cancel_co_order': '/api/v2/coverorder?oms_order_id={order_id}&order_status=open&leg_order_indicator={leg_order_id}',
+        "order.trades": '/api/v2/trade',
         "order.amo":'/api/v2/amo',
         "order.bracketorder":'/api/v2/bracketorder',
         "order.basketorder":'/api/v2/basketorder',
-        "portfolio.positions.netwise":'/api/v2/positions?type=netwise',
-        "portfolio.positions.daywise":'/api/v2/positions?type=daywise',
+
+        
+        "portfolio.positions_netwise":'/api/v2/positions?type=netwise',
+        "portfolio.positions_daywise":'/api/v2/positions?type=daywise',
         "portfolio.positions": "/portfolio/positions",
         "portfolio.holdings": '/api/v2/holdings',
         
         "portfolio.positions.convert": "/portfolio/positions",
 
-
-        "market.instruments.all": "/instruments",
+        'scripinfo': '/api/v2/scripinfo?exchange={exchange}&instrument_token={token}'
+        "market.instruments.all": '/api/v2/contracts.json?exchanges={exchange}',
         "market.instruments": "/instruments/{exchange}",
         "market.margins": "/margins/{segment}",
         "market.historical": "/instruments/historical/{instrument_token}/{interval}",
